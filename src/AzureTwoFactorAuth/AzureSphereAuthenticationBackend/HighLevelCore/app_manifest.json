@@ -1,0 +1,21 @@
+﻿{
+  "SchemaVersion": 1,
+  "Name": "AzureSphereAuthenticationBackend_HighLevelCore",
+  "ComponentId": "7446112f-daec-4cfd-b89a-886c8be85ed0",
+  "EntryPoint": "/bin/app",
+  "CmdArgs": ["[YOUR-SCOPE-ID]"],
+  "Capabilities": {
+    "AllowedConnections": [ "global.azure-devices-provisioning.net", "[YOUR-ALLOWED-APPLICATION-CONNECTIONS]" ],
+    "AllowedTcpServerPorts": [],
+    "AllowedUdpServerPorts": [],
+    "Gpio": [ "$SAMPLE_BUTTON_1", "$SAMPLE_BUTTON_2", "$SAMPLE_LED" ],
+    "Uart": [],
+    "WifiConfig": true,
+    "NetworkConfig": false,
+    "SystemTime": false,
+    "DeviceAuthentication": "[YOUR-DEVICE-AUTHENTICATION]",
+    "MutableStorage": { "SizeKB": 8 },
+    "AllowedApplicationConnections": [ "YOUR-ALLOWED-APPLICATION-CONNECTIONS" ]
+  },
+  "ApplicationType": "Default"
+}

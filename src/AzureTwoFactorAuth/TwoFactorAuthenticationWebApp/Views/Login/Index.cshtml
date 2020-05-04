@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h2>Login</h2>
+<form method="post" action="login">
+    <div class="login-view table-bordered"  style="padding:10px;">
+        <div class="row"  style="padding-bottom:10px;">
+            <div class="col-md-2">
+                <label class="control-label">
+                    User name
+                </label>
+            </div>
+            <div class="col-md-5">
+                <input type="text" id="txtUserName" name="txtUserName" class="user-name text-left" />
+            </div>
+        </div>
+        <div class="row" style="padding-bottom:10px;">
+            <div class="col-md-2">
+                <label class="control-label">
+                    Password
+                </label>
+            </div>
+            <div class="col-md-5">
+                <input type="password" id="txtPassword" name="txtPassword" class="password" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-5">
+                <button class="btn-primary">Login</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-5">
+                <label class="label fore">@this.Model</label>
+            </div>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,11 @@
+﻿{
+  "SchemaVersion": 1,
+  "Name": "AzureSphereAuthenticationBackend_RealTimeCore",
+  "ComponentId": "87e76fca-68bd-4ef2-a0a2-89a84b63af4d",
+  "EntryPoint": "/bin/app",
+  "CmdArgs": [],
+  "Capabilities": {
+    "AllowedApplicationConnections": [ "7446112f-daec-4cfd-b89a-886c8be85ed0" ]
+  },
+  "ApplicationType": "RealTimeCapable"
+}

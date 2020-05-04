@@ -1,0 +1,73 @@
+﻿@model TwoFactorAuthenticationWebApp.Models.SecondFactorModel
+@{
+    ViewData["Title"] = "Two Factor Authentication - Validator";
+}
+
+<h1>Second Factor Authentication</h1>
+<p>
+
+
+<p class="h2">Request data</p>
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>User name </th>
+        <td>@Model.PartitionKey</td>
+    </tr>
+    <tr>
+        <th>Unique Id </th>
+        <td>@Model.RowKey</td>
+    </tr>
+    <tr>
+        <th>Correlation Id </th>
+        <td> @Model.CorrelationId</td>
+    </tr>
+</table>
+<p class="h2">Second factor validation Status</p>
+
+<div>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td id="ValidationStatus" class="validation-status">
+                Pending
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="info first-factor">
+    <label>First factor validation completed. For second factor press button "B" on the device and click validate second factor</label>
+    <button onclick="Javascript: validate();">Validate Second Factor</button>
+</div>
+<div class="info second-factor" style="visibility:hidden">
+    <label>Second factor validation has completed. The user is authenticated.</label>
+</div>
+<div class="info second-factor" style="visibility:hidden">
+    <label>Second factor validation has completed. The user is not authenticated.</label>
+</div>
+<script>
+    function sleep(delay) {
+        var start = new Date().getTime();
+        var validationStatus = document.getElementById("ValidationStatus").innerHTML;
+        validate();
+        if (validationStatus != "true") {
+            while (new Date().getTime() < start + delay);
+        }
+    }
+    function validate() {
+        const Http = new XMLHttpRequest();
+        const url = window.location.origin + '/Validator?partionKey=@Model.PartitionKey&rowKey=@Model.RowKey&correlationId=@Model.CorrelationId';
+        Http.open("GET", url);
+        Http.send();
+        Http.onreadystatechange = (e) => {
+            document.getElementById("ValidationStatus").innerHTML = Http.responseText;
+            document.getElementsByClassName("first-factor")[0].style.visibility = "hidden";
+            if (Http.responseText !== 'true') {
+                document.getElementsByClassName("second-factor")[0].style.visibility = "hidden";
+                document.getElementsByClassName("second-factor")[1].style.visibility = "visible";
+            }
+            else {
+                document.getElementsByClassName("second-factor")[0].style.visibility = "visible";
+                document.getElementsByClassName("second-factor")[1].style.visibility = "hidden";
+            }
+        }
+    }
+</script>
